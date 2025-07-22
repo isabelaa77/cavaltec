@@ -52,3 +52,25 @@ next.addEventListener('click', () => {
 });
 
 updateCarousel();
+
+let startX = 0;
+let endX = 0;
+
+const carousel = document.getElementById('carousel');
+
+carousel.addEventListener('touchstart', (e) => {
+  startX = e.touches[0].clientX;
+});
+
+carousel.addEventListener('touchend', (e) => {
+  endX = e.changedTouches[0].clientX;
+  handleSwipe();
+});
+
+function handleSwipe() {
+  if (endX < startX - 50) {
+    document.querySelector('.next').click(); // Simula clic en el botón siguiente
+  } else if (endX > startX + 50) {
+    document.querySelector('.prev').click(); // Simula clic en el botón anterior
+  }
+}
